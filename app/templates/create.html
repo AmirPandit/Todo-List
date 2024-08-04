@@ -1,0 +1,14 @@
+{%extends 'master.html'%}
+
+{%block title%} TODO List {%endblock%}
+
+{%block content%}
+
+<form method="POST">
+{%csrf_token%}
+{{form.as_p}}
+
+<button type="submit">Add</button>
+</form>
+<button><a href="{% url 'view'%}">View Record</a></button>
+{%endblock%}

@@ -1,0 +1,29 @@
+{%extends 'master.html'%}
+
+{%block title%} TO-DO List {%endblock%}
+
+{%block content%}
+
+<table>
+    <thead>
+        <th>Date</th>&nbsp;&nbsp;&nbsp;&nbsp;
+        <th>Title</th>&nbsp;&nbsp;&nbsp;&nbsp;
+        <th>Description</th>&nbsp;&nbsp;&nbsp;&nbsp;
+        <th>Actions</th>
+    </thead>
+    <tbody>
+        
+        {% for x in form %}
+        <tr>
+        <td>{{x.Date}}</td>        
+        <td>{{x.Title}}</td>
+        <td>{{x.Description}}</td>
+       <td><button><a href="record/{{x.id}}">View</a></button><button><a href="{% url 'edit' x.id%}">Edit</a></button><button><a href="record/{{x.id}}/delete" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a></button></td>
+    </tr>
+       {%endfor%} 
+        
+    </tbody>
+</table>
+
+<button><a href="{% url 'create'%}">Add List</a></button>
+{%endblock%}

@@ -1,0 +1,12 @@
+{%extends 'master.html'%}
+
+{%block title%} TO-DO List {%endblock%}
+
+{%block content%}
+
+<h1>TITLE: {{details.Title}}</h1>
+<h3>Description: {{details.Description}}</h3>
+<p>Date: {{details.Date}}</p>
+
+<button><a href="{% url 'view'%}"> Go To Record</a></button> <button><a href="{% url 'create'%}">Add List</a></button><button><a href="{% url 'delete' details.id%}" onclick="return confirm('Are you sure?');">Delete</a></button>
+{%endblock%}
