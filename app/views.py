@@ -1,3 +1,5 @@
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.template import loader
@@ -5,6 +7,26 @@ from . import forms
 from . import models
 
 #for creating form in html and save the data getting from user
+def login_view(request):
+    loginform = forms.LoginList()
+    username = request.POST.get("username")
+    password = request.POST.get("password")
+    user = authenticate(request, username = username, password = password)
+    if user is not None:
+        login(request, user)
+        return redirect('create')
+    else:
+        loginform = forms.LoginList()
+
+    return render(request, 'login.html', {'form': loginform})
+
+
+def logout_view(request):
+    logout(request)
+    return render(request,'success.html')
+
+
+@login_required(login_url="login")
 def create(request):
     if request.method == 'POST': # if user submit the form
         form = forms.FormList(request.POST) # assign the data from FormList to form variable 

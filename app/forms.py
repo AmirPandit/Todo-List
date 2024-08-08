@@ -1,5 +1,5 @@
 from django import forms
-from .models import formdataset
+from .models import formdataset, Login
 
 class FormList(forms.ModelForm):
     class Meta:
@@ -18,3 +18,7 @@ class FormList(forms.ModelForm):
                 'type': 'date',
             })
         }
+class LoginList(forms.ModelForm):
+    class Meta:
+        model = Login
+        fields = ['username', 'password']

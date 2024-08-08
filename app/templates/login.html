@@ -1,0 +1,15 @@
+{%extends 'master.html'%}
+
+{%block title%} Login Page {%endblock%}
+
+{%block content%}
+
+<h1 style="text-align: center;">Login Page</h1>
+
+<form method="POST">
+    {%csrf_token%}
+    {{form.as_p}}
+<button type="submit">Login</button>
+<button>signup</button>
+</form>
+{%endblock%}
